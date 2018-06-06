@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ybsx.base.ResultBody;
 import com.ybsx.base.yml.YmlConfig;
@@ -56,10 +57,25 @@ public class FileController {
 	}
 	
 	
+	/*
+	 * 文件上传
+	 */
+	 	@RequestMapping(value = "/myload")
+	    public String uploadUserPic(
+	            MultipartFile file,
+	            HttpServletRequest request
+	    ){
+	 		System.out.println(file.getName());
+	 		return null;
+	 	}
 	
-	
-	
-	
+		@RequestMapping(value = "/myload2")
+	    public ResultBody uploadUserPic2(
+	            HttpServletRequest request,String name
+	    ){
+	 		System.out.println(name);
+	 		return new ResultBody<>();
+	 	}
 	
 	
 	

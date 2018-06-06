@@ -1,9 +1,9 @@
 package com.ybsx.controller.tool;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.MultipartProperties;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,12 +29,16 @@ public class TestController {
 	@Autowired
 	private MultipartProperties multipartProperties;
 	
-	@Autowired
-	private ServletContext context;
+	private Logger logger = Logger.getLogger(getClass());
+	
+	
+	/*@Autowired
+	private ServletContext context;*/
 
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	public ResultBody<?> get1() {
 		System.out.println(ymlConfig.active);
+		logger.info("asdfadasasdf");
 		return new ResultBody<>(multipartProperties);
 	}
 

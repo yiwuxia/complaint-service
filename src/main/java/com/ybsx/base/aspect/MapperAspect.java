@@ -34,7 +34,7 @@ import redis.clients.jedis.JedisPool;
  * @author zhouKai
  * @createDate ‎2017‎年‎8‎月‎14‎日 ‏‎20:09:52
  */
-//@Aspect
+@Aspect
 @Component
 public class MapperAspect {
 

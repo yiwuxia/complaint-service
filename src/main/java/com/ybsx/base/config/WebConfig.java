@@ -16,7 +16,7 @@ import com.ybsx.base.permi.UserRealm;
  * @author zhouKai
  * @createDate 2017年11月6日 下午2:42:44
  */
-@Configuration
+//@Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired

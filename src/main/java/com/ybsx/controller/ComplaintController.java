@@ -35,6 +35,10 @@ public class ComplaintController {
 	/**
 	 * 添加投诉信息
 	 * @param addOrder
+	 *  1、@RequestBody需要把所有请求参数作为json解析，因此，不能包含key=value这样的写法在请求url中，所有的请求参数都是一个json
+
+    	2、直接通过浏览器输入url时，@RequestBody获取不到json对象，需要用java编程或者基于ajax的方法请求，
+    	将Content-Type设置为application/json
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)

@@ -18,6 +18,12 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.ybsx.base.yml.YmlConfig;
 import com.ybsx.dao.mapper.master.MasterMapperPackage;
 
+
+
+/*
+ * By type-safe, you can't make any mistakes with the String value of the name of the package.
+ *  If you specify an incorrect class, it will fail at compile time.
+ */
 @Configuration
 @MapperScan(basePackageClasses = MasterMapperPackage.class, sqlSessionFactoryRef = "masterSqlSessionFactory")
 public class MasterDataSourceConfig {
