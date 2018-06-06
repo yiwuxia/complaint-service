@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ybsx.dao.mapper.master.ComplaintMapper">	
+	<select id="selectFirstTrailOrder" resultType="com.ybsx.entity.FirstTrailOrder">
+		SELECT co.id,
+		       co.uid,
+		       co.name,
+		       co.mobile,
+		       co.room,
+		       co.id_image idImage,
+		       co.content,
+		       co.create_time createTime,
+		       co.update_time updateTime,
+		       ctf.state,
+		       ctf.comment
+		FROM complaint_order co, complaint_trail_first ctf
+		WHERE co.id = ctf.id AND co.trail_state = 'first'
+		ORDER BY co.create_time
+		limit #{offset}, #{limit}
+	</select>
+	<select id="selectFirstTrailOrderCnt" resultType="java.lang.Integer">
+		select count(*)
+		from complaint_order co
+		where co.trail_state = 'first'
+	</select>
+	<select id="selectPositiveTrailOrder" resultType="com.ybsx.entity.PositiveTrailOrder">
+		SELECT co.id,
+		       co.uid,
+		       co.name,
+		       co.mobile,
+		       co.room,
+		       co.id_image    idImage,
+		       co.content,
+		       co.create_time createTime,
+		       co.update_time updateTime,
+		       ctp.state,
+		       ctf.comment    firstComment,
+		       ctp.comment    positiveComment,
+		       ctp.mediator    mediator
+		FROM complaint_order             co,
+		     complaint_trail_first       ctf,
+		     complaint_trail_positive    ctp
+		WHERE co.trail_state = 'positive' AND co.id = ctf.id AND co.id = ctp.id
+		ORDER BY co.create_time
+		limit #{offset}, #{limit}
+	</select>
+	<select id="selectPositiveTrailOrderCnt" resultType="java.lang.Integer">
+		select count(*)
+		from complaint_order co
+		where co.trail_state = 'positive'
+	</select>
+	<select id="selectLastTrailOrder" resultType="com.ybsx.entity.LastTrailOrder">
+		SELECT co.id,
+		       co.uid,
+		       co.name,
+		       co.mobile,
+		       co.room,
+		       co.id_image    idImage,
+		       co.content,
+		       co.create_time createTime,
+		       co.update_time updateTime,
+		       ctl.state,
+		       ctf.comment    firstComment,
+		       ctp.comment    positiveComment
+		FROM complaint_order             co,
+		     complaint_trail_first       ctf,
+		     complaint_trail_positive    ctp,
+		     complaint_trail_last        ctl
+		WHERE     co.trail_state = 'last'
+		      AND co.id = ctf.id
+		      AND co.id = ctp.id
+		      AND co.id = ctl.id
+		ORDER BY co.create_time
+		limit #{offset}, #{limit}
+	</select>
+	<select id="selectLastTrailOrderCnt" resultType="java.lang.Integer">
+		select count(*)
+		from complaint_order co
+		where co.trail_state = 'last'
+	</select>
+	
+	<select id="selectOrderVOs" resultType="com.ybsx.entity.OrderVO">
+		SELECT co.id,
+		       co.uid,
+		       co.name,
+		       co.mobile,
+		       co.room,
+		       co.id_image       idImage,
+		       co.content,
+		       co.create_time    createTime,
+		       co.update_time    updateTime,
+		       co.trail_state    trailState,
+		       co.end_reason    endReason,
+		       ctf.comment       firstComment,
+		       ctp.comment       positiveComment,
+		       ctl.comment       endComment,
+		       ctf.update_time   firstTime,
+		       ctp.update_time   positiveTime,
+		       ctl.update_time   lastTime,
+		       ctf.state         firstState,
+		       ctf.refuse_reason refuseReason
+		FROM complaint_order    co
+		     LEFT JOIN complaint_trail_first ctf ON co.id = ctf.id
+		     LEFT JOIN complaint_trail_positive ctp ON co.id = ctp.id
+		     LEFT JOIN complaint_trail_last ctl ON co.id = ctl.id
+		WHERE 1 = 1
+		<include refid="select_OrderVO_condition"></include>
+		ORDER BY co.create_time desc
+		limit #{offset}, #{limit}
+	</select>
+	<select id="selectOrderVOCnt" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM complaint_order co
+		WHERE 1 = 1
+		<include refid="select_OrderVO_condition"></include>
+	</select>
+	<sql id="select_OrderVO_condition">
+		<if test='uid != null'>
+			 AND co.uid = #{uid}
+		</if>
+		<if test='orderId != null'>
+			 AND co.id = #{orderId}
+		</if>
+		<if test='trailState != null'>
+			 AND co.trail_state = #{trailState}
+		</if>
+		<if test='minTime != null'>
+			 AND co.create_time > #{minTime}
+		</if>
+	</sql>
+	
+	<select id="selectOrderVO" resultType="com.ybsx.entity.OrderVO">
+		SELECT co.id,
+		       co.uid,
+		       co.name,
+		       co.mobile,
+		       co.room,
+		       co.id_image       idImage,
+		       co.content,
+		       co.create_time    createTime,
+		       co.update_time    updateTime,
+		       co.trail_state    trailState,
+		       co.end_reason    endReason,
+		       ctf.comment       firstComment,
+		       ctp.comment       positiveComment,
+		       ctl.comment       endComment,
+		       ctf.update_time   firstTime,
+		       ctp.update_time   positiveTime,
+		       ctl.update_time   lastTime,
+		       ctf.state         firstState,
+		       ctf.refuse_reason refuseReason
+		FROM complaint_order    co
+		     LEFT JOIN complaint_trail_first ctf ON co.id = ctf.id
+		     LEFT JOIN complaint_trail_positive ctp ON co.id = ctp.id
+		     LEFT JOIN complaint_trail_last ctl ON co.id = ctl.id
+		WHERE co.id = #{orderId}
+	</select>
+	
+	
+	
+	
+	
+</mapper>

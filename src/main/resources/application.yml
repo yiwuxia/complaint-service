@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: dev
+  http:
+    multipart:
+      max-file-size: 20000MB
+      max-request-size: 100000MB
+server:
+  context-path: /service
+
+
+myYml:
+  tempDir: /data/baika_temp/
+  simpleProp: simplePropValue
+  arrayProps: 1,2,3,4,5
+  listProp1:
+  - name: abc
+    age: 11
+  - name: efg
+    age: 22
+  listProp2:
+  - config2Value1
+  - config2Vavlue2
+  mapProps:
+    key1: value1
+    key2: value2
+  datasource:
+    url: 
+    username: 
+    password: 
+    driver: 
+    
+    
+    

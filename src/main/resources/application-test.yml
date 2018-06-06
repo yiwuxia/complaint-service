@@ -1,0 +1,13 @@
+# 端口号
+server:
+  port: 9856
+
+myYml:
+  datasource:
+    url: jdbc:mysql://192.168.2.11:3306/a0001_chat?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: qaz~!@
+    driver: com.mysql.jdbc.Driver
+  redis:
+    host: 192.168.2.36
+    port: 6379

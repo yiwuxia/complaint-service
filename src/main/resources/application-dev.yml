@@ -1,0 +1,20 @@
+# 端口号
+server:
+  port: 19856
+
+myYml:
+  tempDir: /data/baika_temp/
+  smsUrl: http://192.168.2.31:18080/sms/send/verifyCode
+  datasource:
+    url: jdbc:mysql://192.168.2.11:3306/a0001_chat?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: qaz~!@
+    driver: com.mysql.jdbc.Driver
+  seaweed:
+    serverIp: 192.168.2.11
+    assignPort: 9333
+    deletePort: 8060
+    publicUrl: http://192.168.2.11:8060
+  redis:
+    host: 192.168.2.36
+    port: 6379

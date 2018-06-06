@@ -1,0 +1,20 @@
+# 端口号
+server:
+  port: 12370
+
+myYml:
+  tempDir: /tmp/complaint-service/
+  smsUrl: http://passport.1234tv.com/sms/send/verifyCode
+  datasource:
+    url: jdbc:mysql://localhost:3306/complaint?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 1qaz@WSX123
+    driver: com.mysql.jdbc.Driver
+  seaweed:
+    serverIp: 10.9.188.225
+    assignPort: 9333
+    deletePort: 9080
+    publicUrl: http://106.75.103.181:9080
+  redis:
+    host: 192.168.2.36
+    port: 6379
